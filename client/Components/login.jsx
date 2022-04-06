@@ -11,9 +11,10 @@ const Login = () => {
     <div>
       <form>
         <div className = "loginText">Welcome Back to CryptoTracker</div>
-        <input ref = {username} placeholder = "username" required></input>
-        <input ref = {password} placeholder = "password" required></input>
+        <input ref = {username} placeholder = "username"></input>
+        <input ref = {password} placeholder = "password"></input>
         <button type="submit">LOGIN</button>
+        <button type="signup" onClick={() => navigate('/signup')}>SIGNUP</button>
       </form>
     </div>
   )
