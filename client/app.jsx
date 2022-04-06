@@ -1,7 +1,29 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import { createRoot } from 'react-dom/client';
+import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 
-ReactDOM.render(
-    <h1>TEST</h1>,
-  document.getElementById('root')
-);
+import Login from './Components/login'
+
+const container = document.getElementById('root');
+const root = createRoot(container);
+
+class App extends React.Component {
+
+  render() {
+    return (
+      // <div>
+      //   TEST23
+      // </div>
+      <div>
+      <Router>
+          <Routes>
+              <Route exact path='/' element={<Login/>} />
+          </Routes>
+      </Router>
+  </div>
+    )
+  }
+}
+
+root.render(<App />)
