@@ -7,15 +7,21 @@ const Login = () => {
   const username = React.createRef();
   const password = React.createRef();
 
+  const submitLogin = (event, user, pass) => {
+    event.preventDefault();
+    if (user.current.value === "test" && pass.current.value === "test") navigate('/main')
+    else alert('incorrect info!')
+  }
+
   return (
     <div>
-      <form>
+      <form onSubmit={(event) => submitLogin(event, username, password)}>
         <div className = "loginText">Welcome Back to CryptoTracker</div>
         <input ref = {username} placeholder = "username"></input>
         <input ref = {password} placeholder = "password"></input>
         <button type="submit">LOGIN</button>
-        <button type="signup" onClick={() => navigate('/signup')}>SIGNUP</button>
       </form>
+      <button type="signup" onClick={() => navigate('/signup')}>SIGNUP</button>
     </div>
   )
 }
