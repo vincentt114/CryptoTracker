@@ -12,7 +12,7 @@ const App = () => {
       {displayLogin && < Login />}
       {!displayLogin && < Signup />}
       <br/>
-      < button onClick = {() => setDisplay(!displayLogin)}> Sign up for an Account </button>
+      < button onClick = {() => setDisplay(!displayLogin)}> {displayLogin ? 'Sign up for an Account' : 'Back to Sign In'}</button>
     </div>
   )
 }
