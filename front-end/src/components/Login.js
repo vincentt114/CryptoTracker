@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Login = (props) => {
+  const navigate = useNavigate();
+  const [success, setSuccess] = useState(null);
+  const [id, setID] = useState(null);
 
-  const [success, setSuccess] = useState(null)
-
+  //makes a fetch to check if login info is correct
   const handleClick = (e) => {
     e.preventDefault()
     fetch('http://localhost:8000/users?' + new URLSearchParams({
@@ -11,13 +14,17 @@ const Login = (props) => {
       password: password.current.value
     }))
       .then((data) => data.json())
-      .then((data) => setSuccess(data.status))
+      .then((data) => {
+        setSuccess(data.status)
+        setID(data.id)
+      })
   }
 
+  //routes based on whether or not login info is correct
   useEffect(() => {
     const status = document.getElementById('success')
     //successful account creation should redirect to main page 
-    if (success === true) status.innerHTML = `Success! Welcome Back ${username.current.value}`
+    if (success === true) navigate('/main', {state:{id:id}})
     else if (success === false) status.innerHTML = 'Wrong Username/Password'
   })
   

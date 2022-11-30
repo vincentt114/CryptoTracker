@@ -1,19 +1,17 @@
-import './App.css';
-import {useState} from 'react'
-import Login from './components/Login.js'
-import Signup from './components/Signup.js'
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+import './App.css';
+import Home from './components/Home.js'
+import Main from './components/Main.js'
 const App = () => {
 
-  const [displayLogin, setDisplay] = useState(true)
-
   return(
-    <div>
-      {displayLogin && < Login />}
-      {!displayLogin && < Signup />}
-      <br/>
-      < button onClick = {() => setDisplay(!displayLogin)}> {displayLogin ? 'Sign up for an Account' : 'Back to Sign In'}</button>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={< Home/>} />
+        <Route path='/main' element={< Main/>} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 export default App;

@@ -7,13 +7,13 @@ const userController = {};
 
 userController.get = (req, res, next) => {
   const { username, password } = req.query;
-  const lookup = `SELECT password FROM users
+  const lookup = `SELECT * FROM users
   WHERE username = $1`;
   db.query(lookup, [username])
     .then((data) => {
       if (data.rows[0].password) {
         bcrypt.compare(password, data.rows[0].password, (err, result) => {
-          if (result) res.locals = { status: true };
+          if (result) res.locals = { status: true, id: data.rows[0].id };
           else res.locals = { status: false };
           return next();
         });
